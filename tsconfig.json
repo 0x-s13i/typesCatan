@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "ES2020",
+        "skipLibCheck": false,
+        "strict": true,
+        "noImplicitReturns": true,
+        "esModuleInterop": true,
+        "strictFunctionTypes": false,
+        "noUncheckedIndexedAccess": true,
+    },
+    "files": [
+        "game.ts"
+    ],
+}
