@@ -1,5 +1,5 @@
 type CardType = "Resource" | "Development" | "Special"
-type ResourceCardSubtype = "Brick" | "Grain" | "Lumber" | "Ore" | "Wool"
+export type ResourceCardSubtype = "Brick" | "Grain" | "Lumber" | "Ore" | "Wool"
 type DevelopmentCardSubtype = "Knight" | "Progress" | "VictoryPoint"
 type SpecialCardSubtype = "LongestRoad" | "LargestArmy"
 type Subtype = ResourceCardSubtype | DevelopmentCardSubtype | SpecialCardSubtype

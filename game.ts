@@ -1,19 +1,24 @@
-import { Card, ResourceCard, DevelopmentCard, SpecialCard } from "./card";
+import { Card, ResourceCard, DevelopmentCard, SpecialCard, ResourceCardSubtype} from "./card";
 import { City } from "./pieces/city";
 import { Road } from "./pieces/road";
 import { Settlement } from "./pieces/settlement";
 import { Colour, Player } from "./player";
 import { TerrainType } from "./terrain";
 import { Tile } from "./tile";
+import { Dice } from "./dice"
 
 class Game {
 
     players: Player[];
     tiles: Tile[];
+    diceOne: Dice;
+    diceTwo: Dice;
 
     constructor() {
         this.players = [];
         this.tiles = [];
+        this.diceOne = new Dice();
+        this.diceTwo = new Dice();
     }
 
     addPlayers(playerName: string, playerColour: Colour): Player {
@@ -51,9 +56,35 @@ class Game {
         return newCity;
     }
 
+    rollDice(): bigint {
+        return this.diceOne.roll() + this.diceTwo.roll();
+    }
+
+    tilesWithToken(tokenNumber: bigint): Tile[] {
+        let tileArray = [];
+        for (const tile of this.tiles) {
+            if (tile.tileNumber == tokenNumber) {
+                tileArray.push(tile);
+            }
+        }
+        return tileArray;
+    }
+
+    awardOwnersResourceCards(tilesWithToken: Tile[]) {
+        for (const tile of tilesWithToken) {
+            for (const settlement of tile.settlements) {
+                let resource = tile.resourceType;
+                this.addCardToDeck(
+                    settlement.owner.username, 
+                    new ResourceCard(resource as ResourceCardSubtype)
+                    );
+            }
+        }
+    }
+
 }
 
-// Create an instance of the game
+/// Create an instance of the game
 const g = new Game;
 
 // Create the players
@@ -102,7 +133,7 @@ for (let i = 0; i < 15; i++) {
     }
 }
 
-// Players put their pieces down on the board
+// Players put their first pieces down on the board
 tile1.addRoadToTile(player1.roads[0]!);
 tile1.addSettlementToTile(player1.settlements[0]!);
 
@@ -115,12 +146,39 @@ tile4.addSettlementToTile(player3.settlements[0]!);
 tile13.addRoadToTile(player4.roads[0]!);
 tile13.addSettlementToTile(player4.settlements[0]!);
 
-// roll dice
+// Players put their second pieces down on the board
+tile8.addRoadToTile(player1.roads[1]!);
+tile8.addSettlementToTile(player1.settlements[1]!);
 
-// award cards
+tile14.addRoadToTile(player2.roads[1]!);
+tile14.addSettlementToTile(player2.settlements[1]!);
+
+tile11.addRoadToTile(player3.roads[1]!);
+tile11.addSettlementToTile(player3.settlements[1]!);
+
+tile15.addRoadToTile(player4.roads[1]!);
+tile15.addSettlementToTile(player4.settlements[1]!);
+
+// TODO -> Remove this.
+// Putting this in to simulate multiple rounds to build trading functionality
+for (let i = 0; i < 10; i++) {
+    // roll dice
+    let token = g.rollDice();
+    
+    // award cards
+    let tilesToAward = g.tilesWithToken(token);
+    g.awardOwnersResourceCards(tilesToAward);    
+}
+
+for (const player of g.players) {
+    console.log(player.username);
+    console.log(player.deck);
+}
 
 // trade
 
 // build
 
-console.log(g);
+// Add up player scores
+
+// console.log(g);
