@@ -38,6 +38,22 @@ export class Trade {
         }
     }
 
+    // TODO -> Function to check if the player who accepts has the cards
+
+    // accept tade
+    accept(tradingPartner: Player) {
+        // TDOO -> check if player has the card, and then make the trade or throw error
+
+    //     for (const cardWantedSubtype of this.cardsWanted) {
+    //         for (const card of tradingPartner.deck.cards) {
+    //             if (card.subtype == cardWantedSubtype) {
+    //                 const cardIndex = tradingPartner.
+    //             }
+    //         }
+    //     }
+    
+    }
+
     viewTradeOffer() {
         console.log("Cards Given Away");
         console.log(this.cardsToTrade);
@@ -46,8 +62,6 @@ export class Trade {
     }
 
     // cancel trade
-
-    // accept tade
 
     // edit trade
 
