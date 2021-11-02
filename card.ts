@@ -1,8 +1,8 @@
-type CardType = "Resource" | "Development" | "Special"
+export type CardType = "Resource" | "Development" | "Special"
 export type ResourceCardSubtype = "Brick" | "Grain" | "Lumber" | "Ore" | "Wool"
-type DevelopmentCardSubtype = "Knight" | "Progress" | "VictoryPoint"
-type SpecialCardSubtype = "LongestRoad" | "LargestArmy"
-type Subtype = ResourceCardSubtype | DevelopmentCardSubtype | SpecialCardSubtype
+export type DevelopmentCardSubtype = "Knight" | "Progress" | "VictoryPoint"
+export type SpecialCardSubtype = "LongestRoad" | "LargestArmy"
+export type Subtype = ResourceCardSubtype | DevelopmentCardSubtype | SpecialCardSubtype
 
 export abstract class Card {
 

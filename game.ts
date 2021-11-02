@@ -79,6 +79,13 @@ class Game {
                     new ResourceCard(resource as ResourceCardSubtype)
                     );
             }
+            for (const city of tile.cities) {
+                let resource = tile.resourceType;
+                this.addCardToDeck(
+                    city.owner.username, 
+                    new ResourceCard(resource as ResourceCardSubtype)
+                    );
+            }
         }
     }
 
