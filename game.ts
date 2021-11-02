@@ -5,7 +5,8 @@ import { Settlement } from "./pieces/settlement";
 import { Colour, Player } from "./player";
 import { TerrainType } from "./terrain";
 import { Tile } from "./tile";
-import { Dice } from "./dice"
+import { Dice } from "./dice";
+import { Trade } from "./trade";
 
 class Game {
 
@@ -166,7 +167,7 @@ tile11.addSettlementToTile(player3.settlements[1]!);
 tile15.addRoadToTile(player4.roads[1]!);
 tile15.addSettlementToTile(player4.settlements[1]!);
 
-// TODO -> Remove this.
+// TODO -> Remove the loop
 // Putting this in to simulate multiple rounds to build trading functionality
 for (let i = 0; i < 10; i++) {
     // roll dice
@@ -177,13 +178,21 @@ for (let i = 0; i < 10; i++) {
     g.awardOwnersResourceCards(tilesToAward);    
 }
 
+// TODO -> Also remove this whole block
+// This just shows the players cards
 for (const player of g.players) {
     console.log(player.username);
     console.log(player.deck);
 }
 
 // trade
+let trade1 = new Trade(player1);
+trade1.addCardToTrade(player1.deck.cards[0]!);
 
+trade1.addCardWanted("Lumber");
+trade1.addCardWanted("Ore");
+
+trade1.viewTradeOffer();
 // build
 
 // Add up player scores
