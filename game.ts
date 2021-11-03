@@ -190,9 +190,15 @@ let trade1 = new Trade(player1);
 trade1.addCardToTrade(player1.deck.cards[0]!);
 
 trade1.addCardWanted("Lumber");
-trade1.addCardWanted("Ore");
 
 trade1.viewTradeOffer();
+
+trade1.accept(player2);
+
+for (const player of g.players) {
+    console.log(player.username);
+    console.log(player.deck);
+}
 // build
 
 // Add up player scores

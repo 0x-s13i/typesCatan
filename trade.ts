@@ -38,20 +38,44 @@ export class Trade {
         }
     }
 
-    // TODO -> Function to check if the player who accepts has the cards
+    private _checkCardsExist(player: Player, cardSubtype: ResourceCardSubtype): boolean {
+        for (const card of player.deck.cards) {
+            if (card.subtype == cardSubtype) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     // accept tade
     accept(tradingPartner: Player) {
-        // TDOO -> check if player has the card, and then make the trade or throw error
+        for (const cardSubtype of this.cardsWanted) {
+            let doesCardExist = this._checkCardsExist(tradingPartner, cardSubtype);
+            if (!doesCardExist) {
+                throw Error("You can't accept the trade as you don't have that card in your deck")
+            }
+        }
 
-    //     for (const cardWantedSubtype of this.cardsWanted) {
-    //         for (const card of tradingPartner.deck.cards) {
-    //             if (card.subtype == cardWantedSubtype) {
-    //                 const cardIndex = tradingPartner.
-    //             }
-    //         }
-    //     }
-    
+        for (const cardWantedSubtype of this.cardsWanted) {
+            for (const card of tradingPartner.deck.cards) {
+                if (card.subtype == cardWantedSubtype) {
+                    // remove card from deck
+                    const cardIndex = tradingPartner.deck.cards.indexOf(card, 0);
+                    tradingPartner.deck.cards.splice(cardIndex, 1);
+                    // give card to trading player
+                    this.tradingPlayer.deck.cards.push(card);
+                    break;
+                }
+            }
+        }
+
+        for (const card of this.cardsToTrade) {
+            // give cards to trading partner
+            tradingPartner.deck.cards.push(card);
+        }
+
+        this.state = "complete"
+
     }
 
     viewTradeOffer() {
@@ -64,9 +88,4 @@ export class Trade {
     // cancel trade
 
     // edit trade
-
-    // view trade
-
-    // accept trade
-
 }
