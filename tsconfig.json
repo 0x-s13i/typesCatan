@@ -10,6 +10,6 @@
         "noUncheckedIndexedAccess": true,
     },
     "files": [
-        "game.ts"
+        "index.ts"
     ],
 }

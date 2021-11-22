@@ -86,6 +86,12 @@ export class Trade {
     }
 
     // cancel trade
+    cancelTrade() {
+        throw new Error("Not Implemented Error")
+    }
 
     // edit trade
+    editTrade() {
+        throw new Error("Not Implemented Error")
+    }
 }
