@@ -4,10 +4,10 @@ import { Game } from "./game"
 const g = new Game(4n);
 
 // Create the players
-const player1 = g.addPlayers("Sam", "Red");
-const player2 = g.addPlayers("Matt", "Blue");
-const player3 = g.addPlayers("Jayyyyyy", "Orange");
-const player4 = g.addPlayers("Wattage", "Green");
+const player1 = g.addPlayer("Sam", "Red");
+const player2 = g.addPlayer("Matt", "Blue");
+const player3 = g.addPlayer("Jayyyyyy", "Orange");
+const player4 = g.addPlayer("Wattage", "Green");
 
 // Set up the board (Below is standard setup)
 const tile1 = g.createTile("Mountains", 10n);

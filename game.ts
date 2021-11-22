@@ -15,6 +15,7 @@ export class Game {
     diceOne: Dice;
     diceTwo: Dice;
     numOfPlayers: NumberOfPlayers;
+    maxNumberOfPlayers: BigInt;
 
     constructor(numOfPlayers: NumberOfPlayers) {
         this.players = [];
@@ -22,12 +23,21 @@ export class Game {
         this.diceOne = new Dice();
         this.diceTwo = new Dice();
         this.numOfPlayers = numOfPlayers;
+        this.maxNumberOfPlayers = 4n;
     }
 
-    addPlayers(playerName: string, playerColour: Colour): Player {
-        const newPlayer = new Player(playerName, playerColour, this.numOfPlayers);
-        this.players.push(newPlayer);
-        return newPlayer;
+    addPlayer(playerName: string, playerColour: Colour): Player {
+        if (BigInt(this.players.length) == this.maxNumberOfPlayers) {
+            throw new Error("You can't add more than 4 players to the game");
+        }
+        else if (BigInt(this.players.length) == this.numOfPlayers) {
+            throw new Error(`You already have ${this.players.length} players in the game`);
+        }
+        else {
+            const newPlayer = new Player(playerName, playerColour);
+            this.players.push(newPlayer);
+            return newPlayer;
+        }
     }
 
     addCardToDeck(playerName: string, card: Card) {
