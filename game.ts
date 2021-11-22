@@ -2,7 +2,7 @@ import { Card, ResourceCard, DevelopmentCard, SpecialCard, ResourceCardSubtype} 
 import { City } from "./pieces/city";
 import { Road } from "./pieces/road";
 import { Settlement } from "./pieces/settlement";
-import { Colour, Player } from "./player";
+import { Colour, Player, NumberOfPlayers } from "./player";
 import { TerrainType } from "./terrain";
 import { Tile } from "./tile";
 import { Dice } from "./dice";
@@ -14,16 +14,18 @@ export class Game {
     tiles: Tile[];
     diceOne: Dice;
     diceTwo: Dice;
+    numOfPlayers: NumberOfPlayers;
 
-    constructor() {
+    constructor(numOfPlayers: NumberOfPlayers) {
         this.players = [];
         this.tiles = [];
         this.diceOne = new Dice();
         this.diceTwo = new Dice();
+        this.numOfPlayers = numOfPlayers;
     }
 
     addPlayers(playerName: string, playerColour: Colour): Player {
-        const newPlayer = new Player(playerName, playerColour);
+        const newPlayer = new Player(playerName, playerColour, this.numOfPlayers);
         this.players.push(newPlayer);
         return newPlayer;
     }

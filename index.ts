@@ -1,7 +1,7 @@
 import { Game } from "./game"
 
 /// Create an instance of the game
-const g = new Game;
+const g = new Game(4n);
 
 // Create the players
 const player1 = g.addPlayers("Sam", "Red");

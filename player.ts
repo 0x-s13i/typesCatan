@@ -4,6 +4,7 @@ import { Road } from "./pieces/road";
 import { Settlement } from "./pieces/settlement";
 
 export type Colour = "Red" | "Orange" | "Blue" | "Green"
+export type NumberOfPlayers = 1n | 2n | 3n | 4n
 
 export class Player {
     private static players: string[] = [];
@@ -15,6 +16,7 @@ export class Player {
     public settlements: Settlement[];
     public cities: City[];
     public roads: Road[];
+    public numOfPlayers: NumberOfPlayers;
 
     readonly username: string;
     readonly colour: Colour;
@@ -23,9 +25,10 @@ export class Player {
 
     // TODO -> How to work out victory points for each player?
 
-    constructor(username: string, colour: Colour) {
+    constructor(username: string, colour: Colour, numOfPlayers: NumberOfPlayers) {
         this.username = this._setUsername(username);
         this.colour = this._setColour(colour);
+        this.numOfPlayers = numOfPlayers;
         this.id = this._setPlayerId();
         this.deck = this._createDeck();
         this.settlements = [];
@@ -50,8 +53,8 @@ export class Player {
     }
 
     private _setPlayerId(): bigint {
-        if (Player.nextId > 4n) {
-            throw new Error("Can't have more than 4 players");
+        if (Player.nextId > this.numOfPlayers) {
+            throw new Error(`Can't have more than ${this.numOfPlayers} players`);
         }
         return Player.nextId++;
     }
