@@ -2,11 +2,13 @@ import { Card, ResourceCard, DevelopmentCard, SpecialCard, ResourceCardSubtype} 
 import { City } from "./pieces/city";
 import { Road } from "./pieces/road";
 import { Settlement } from "./pieces/settlement";
-import { Colour, Player, NumberOfPlayers } from "./player";
+import { Colour, Player } from "./player";
 import { TerrainType } from "./terrain";
 import { Tile } from "./tile";
 import { Dice } from "./dice";
 import { Trade } from "./trade";
+
+type NumberOfPlayers = 1n | 2n | 3n | 4n
 
 export class Game {
 
@@ -15,7 +17,7 @@ export class Game {
     diceOne: Dice;
     diceTwo: Dice;
     numOfPlayers: NumberOfPlayers;
-    maxNumberOfPlayers: BigInt;
+    maxNumberOfPlayers: NumberOfPlayers;
 
     constructor(numOfPlayers: NumberOfPlayers) {
         this.players = [];

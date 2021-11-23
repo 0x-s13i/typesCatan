@@ -33,6 +33,7 @@ export class Tile {
         else if (this.settlements.length < 3) {
             this.settlements.push(settlement);
             settlement.inPlay = true;
+            settlement.owner.victoryPoints ++;
         }
         else {
             throw new Error("You cant add more than 3 settlements to a tile");
@@ -49,6 +50,7 @@ export class Tile {
                 if (r.id == settlement.id) {
                     this.settlements.splice(iter, 1);
                     settlement.inPlay = false;
+                    settlement.owner.victoryPoints --;
                     return true;
                 }
                 iter += 1;

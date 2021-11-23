@@ -75,7 +75,6 @@ tile11.addSettlementToTile(player3.settlements[1]!);
 tile15.addRoadToTile(player4.roads[1]!);
 tile15.addSettlementToTile(player4.settlements[1]!);
 
-// TODO -> Remove the loop
 // Putting this in to simulate multiple rounds for testing trading functionality
 for (let i = 0; i < 10; i++) {
     // roll dice
@@ -86,8 +85,7 @@ for (let i = 0; i < 10; i++) {
     g.awardOwnersResourceCards(tilesToAward);    
 }
 
-// TODO -> Also remove this whole block
-// This just shows the players cards
+// This shows the players cards before trading
 for (const player of g.players) {
     console.log(player.username);
     console.log(player.deck);
@@ -103,8 +101,7 @@ trade1.viewTradeOffer();
 
 trade1.accept(player2);
 
-// TODO -> Also remove this whole block
-// This just shows the players cards after trading
+// This shows the players cards after trading
 for (const player of g.players) {
     console.log(player.username);
     console.log(player.deck);
@@ -112,6 +109,5 @@ for (const player of g.players) {
 
 // build
 
-// Add up player scores
-
-// console.log(g);
+// Show Game info
+console.log(g);

@@ -4,7 +4,6 @@ import { Road } from "./pieces/road";
 import { Settlement } from "./pieces/settlement";
 
 export type Colour = "Red" | "Orange" | "Blue" | "Green"
-export type NumberOfPlayers = 1n | 2n | 3n | 4n
 
 export class Player {
     private static players: string[] = [];
@@ -16,13 +15,12 @@ export class Player {
     public settlements: Settlement[];
     public cities: City[];
     public roads: Road[];
-
+    public victoryPoints: bigint;
+    
     readonly username: string;
     readonly colour: Colour;
     readonly id: bigint;
     readonly deck: Deck;
-
-    // TODO -> How to work out victory points for each player?
 
     constructor(username: string, colour: Colour) {
         this.username = this._setUsername(username);
@@ -32,6 +30,7 @@ export class Player {
         this.settlements = [];
         this.cities = [];
         this.roads = [];
+        this.victoryPoints = 0n;
     }
 
     private _setUsername(username: string): string {
